@@ -11,10 +11,11 @@ namespace Arithmetic_Calculator
         static void Main(string[] args)
         {
             while (true)
-            {   
+            {
+                bool keepLooping = true;
                 // User prompt first number or exit
 
-                Console.Write("\nPrompt first number: ");
+                Console.Write("Prompt first number: ");
                 var entry = Console.ReadLine();
 
                 if (entry.ToLower() == "quit")
@@ -24,9 +25,9 @@ namespace Arithmetic_Calculator
 
                 try
                 {
-                    while (true)
+                    while (keepLooping)
                     {
-                        // User choose operation or exit
+                        // User choose operation(+-/*^) or exit
 
                         double number1 = double.Parse(entry);
                         Console.WriteLine("\nChoose operation:\n1.+\n2.-\n3./\n4.*\n5.^");
@@ -36,39 +37,82 @@ namespace Arithmetic_Calculator
                         {
                             Environment.Exit(0);
                         }
-
-                        // User prompt second number or exit
-
+                                                
                         else if (operation == "+" || operation == "1")
                         {
-                            Console.WriteLine("\nPrompt second number: ");
-                            var entry2 = Console.ReadLine();
-                                                        
-                            if (entry2.ToLower() == "quit")
+                            // User prompt second number or exit
+                            while (keepLooping)
                             {
-                                break;
+                                Console.Write("\nPrompt second number: ");
+                                var entry2 = Console.ReadLine();
+
+                                if (entry2.ToLower() == "quit")
+                                {
+                                    Environment.Exit(0);
+                                }
+
+                                // Program print result of an addition. User starts from the beginning.
+
+                                try
+                                {
+                                    double number2 = double.Parse(entry2);
+                                    double addition = number1 + number2;
+                                    Console.WriteLine("Result: " + addition);
+                                    keepLooping = false;
+                                    break;
+
+                                }
+
+                                // Catch exception if User prompt any character besides the number
+
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("\nThat is not valid input");
+                                }
                             }
 
-                            // Program print result of an addition. User starts from the beginning.
-                            try
+                           
+                        }
+
+
+                        else if (operation == "-" || operation == "2")
+                        {
+                            // User prompt second number or exit
+                            while (keepLooping)
                             {
-                                double number2 = double.Parse(entry2);
-                                double addition = number1 + number2;
-                                Console.WriteLine("Result: " + addition);
-                                break;
-                                
+                                Console.Write("\nPrompt second number: ");
+                                var entry2 = Console.ReadLine();
+
+                                if (entry2.ToLower() == "quit")
+                                {
+                                    Environment.Exit(0);
+                                }
+
+                                // Program print result of an subtraction. User starts from the beginning.
+
+                                try
+                                {
+                                    double number2 = double.Parse(entry2);
+                                    double subtraction = number1 - number2;
+                                    Console.WriteLine("Result: " + subtraction);
+                                    keepLooping = false;
+                                    break;
+
+                                }
+
+                                // Catch exception if User prompt any character besides the number
+
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("\nThat is not valid input");
+                                }
                             }
 
-                            // Catch exception if User prompt any character besides the number
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("\nThat is not valid input");
-                            }
-                                                        
-                            
+
                         }
 
                         // Loop of choosing the operation in case of prompt mistake  
+
                         else
                         {
                             Console.WriteLine("\nPlease select the operation");
@@ -78,6 +122,7 @@ namespace Arithmetic_Calculator
                 }                           
                 
                 // Catch exception if User prompt any character besides the number
+
                 catch (FormatException)
                 {
 
