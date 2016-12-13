@@ -130,13 +130,49 @@ namespace Arithmetic_Calculator
                                     Environment.Exit(0);
                                 }
 
-                                // Program print result of an subtraction. User starts from the beginning.
+                                // Program print result of an division. User starts from the beginning.
 
                                 try
                                 {
                                     double number2 = double.Parse(entry2);
                                     double division = number1 / number2;
                                     Console.WriteLine("Result: " + division);
+                                    keepLooping = false;
+                                    break;
+
+                                }
+
+                                // Catch exception if User prompt any character besides the number
+
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("\nThat is not valid input");
+                                }
+                            }
+
+
+                        }
+
+                        else if (operation == "*" || operation == "4")
+                        {
+                            // User prompt second number or exit
+                            while (keepLooping)
+                            {
+                                Console.Write("\nPrompt second number: ");
+                                var entry2 = Console.ReadLine();
+
+                                if (entry2.ToLower() == "quit")
+                                {
+                                    Environment.Exit(0);
+                                }
+
+                                // Program print result of an multiplication. User starts from the beginning.
+
+                                try
+                                {
+                                    double number2 = double.Parse(entry2);
+                                    double multiplication = number1 * number2;
+                                    Console.WriteLine("Result: " + multiplication);
                                     keepLooping = false;
                                     break;
 
