@@ -189,11 +189,51 @@ namespace Arithmetic_Calculator
 
                         }
 
+                        else if (operation == "^" || operation == "5")
+                        {
+                            // User prompt second number or exit
+                            while (keepLooping)
+                            {
+                                Console.Write("\nPrompt the exponent: ");
+                                var entry2 = Console.ReadLine();
+
+                                if (entry2.ToLower() == "quit")
+                                {
+                                    Environment.Exit(0);
+                                }
+
+                                // Program print result of an exponentiation. User starts from the beginning.
+
+                                try
+                                {
+                                    double number2 = double.Parse(entry2);
+                                    double exponentiation = Math.Pow(number1, number2);
+                                    Console.WriteLine("Result: " + exponentiation);
+                                    keepLooping = false;
+                                    break;
+
+                                }
+
+                                // Catch exception if User prompt any character besides the number
+
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("\nThat is not valid input");
+                                }
+                            }
+
+
+                        }
+
                         else
                         {
                             Console.WriteLine("\nPlease select the operation");
                         }
+
+
                     }
+
+
                 }
 
                 // Catch exception if User prompt any character besides the number
